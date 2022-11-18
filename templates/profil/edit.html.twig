@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User
+{% endblock %}
+
+{% block body %}
+	<div class="flex">
+		{{ component('sidebar') }}
+		<div class="container max-w-full mx-auto md:py-24 px-6">
+			<div class="max-w-sm mx-auto px-6">
+				<h1 class="text-center mb-4 text-xl font-semibold">Modifier votre profil</h1>
+				{{ include('profil/_form.html.twig', {'button_label': 'Modifier'}) }}
+			</div>
+			<div class="text-center mt-10">
+				{{ include('profil/_delete_form.html.twig') }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

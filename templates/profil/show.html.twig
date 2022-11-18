@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User
+{% endblock %}
+
+{% block body %}
+	<div class="flex">
+		{{ component('sidebar') }}
+		<div class="container mx-auto overflow-x-auto relative shadow-md sm:rounded-lg my-12">
+			<table class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
+				<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+					<tr>
+						<th scope="col" class="py-3 px-6">Email</th>
+						<th scope="col" class="py-3 px-6">Firstname</th>
+						<th scope="col" class="py-3 px-6">Lastname</th>
+						{% if app.user %}
+							{% if app.user.id == user.id %}
+								<th scope="col" class="py-3 px-6">actions</th>
+							{% endif %}
+						{% endif %}
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+						<td class="py-4 px-6">{{ user.email }}</td>
+						<td class="py-4 px-6">{{ user.firstname }}</td>
+						<td class="py-4 px-6">{{ user.lastname }}</td>
+						{% if app.user %}
+							{% if app.user.id == user.id %}
+								<td class="py-4 px-6">
+									<a href="{{ path('app_profil_edit', {'id': user.id}) }}" class="warning">edit</a>
+								</td>
+							{% endif %}
+						{% endif %}
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

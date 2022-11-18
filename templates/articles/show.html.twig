@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles
+{% endblock %}
+
+{% block body %}
+	<article>
+		<section class="container my-12 mx-auto px-4 md:px-12 flex justify-between gap-10 items-center">
+			<div class="flex-shrink basis-7/12">
+				<h1 class="text-2xl font-semibold">{{article.title}}</h1>
+				<p class="text-lg font-light leading-normal">{{article.description}}</p>
+			</div>
+			<div class="flex-shrink basis-5/12">
+				<img alt="Placeholder" class="block h-auto w-full" src="https://picsum.photos/600/400/?random">
+			</div>
+		</section>
+		<section class="container mt-12 mx-auto py-12 md:px-12 bg-[#EDF7F2]">
+			<div class="bg-white max-w-4xl mx-auto p-12">
+				<h1 class="text-right">
+					<i>{{ article.createdAt|date("d/m/Y") }}</i>
+				</h1><br>
+				<p class="text-justify">{{ article.content }}</p>
+				<div class="flex mt-6 justify-between">
+					{% if article.isStatus %}
+						<h3>Publié</h3>
+					{% else %}
+						<h3>Brouillon</h3>
+					{% endif %}
+					<h3>{{article.user.firstname ~ " " ~ article.user.lastname}}
+					</h3>
+				</div>
+			</div>
+		</section>
+		<section class="container mx-auto py-12 md:px-12 flex justify-center gap-5">
+			{% if app.user %}
+				{% if app.user.id == article.user.id %}
+					<a href="{{ path('app_articles_edit', {'id': article.id}) }}" class="warning">Modifier</a>
+					{{ include('articles/_delete_form.html.twig') }}
+				{% endif %}
+			{% endif %}
+		</section>
+	</article>
+{% endblock %}
