@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Articles;
 use App\Form\ArticlesType;
 use App\Repository\ArticlesRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +15,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticlesController extends AbstractController
 {
     #[Route('/', name: 'app_articles_index', methods: ['GET'])]
-    public function index(ArticlesRepository $articlesRepository): Response
+    public function index(Request $request, PaginatorInterface $paginator, ArticlesRepository $articlesRepository): Response
     {
+        $data = $articlesRepository->findBy(['isStatus' => 1]);
+
+        $articles = $paginator->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            5
+        );
         return $this->render('articles/index.html.twig', [
-            'articles' => $articlesRepository->findAll(),
+            'articles' => $articles,
         ]);
     }
 
@@ -51,6 +59,9 @@ class ArticlesController extends AbstractController
     #[Route('/{id}/edit', name: 'app_articles_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Articles $article, ArticlesRepository $articlesRepository): Response
     {
+        // if ($request->attributes->get('_route_params')['id'] != $this->getUser()) {
+        //     return $this->redirectToRoute('app_articles_index', ['id' => $article->getId()], Response::HTTP_SEE_OTHER);
+        // }
         $form = $this->createForm(ArticlesType::class, $article);
         $form->handleRequest($request);
 
