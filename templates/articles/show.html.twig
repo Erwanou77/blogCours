@@ -11,7 +11,11 @@
 				<p class="text-lg font-light leading-normal">{{article.description}}</p>
 			</div>
 			<div class="flex-shrink basis-5/12">
-				<img alt="Placeholder" class="block h-auto w-full" src="https://picsum.photos/600/400/?random">
+				{% if article.pathImg %}
+					<img alt="Placeholder" class="block h-auto w-full" src="{{ vich_uploader_asset(article, 'imageFile') }}">
+				{% else %}
+					<img alt="Placeholder" class="block h-auto w-full" src="https://picsum.photos/600/400/?random">
+				{% endif %}
 			</div>
 		</section>
 		<section class="container mt-12 mx-auto py-12 md:px-12 bg-[#EDF7F2]">
@@ -19,7 +23,7 @@
 				<h1 class="text-right">
 					<i>{{ article.createdAt|date("d/m/Y") }}</i>
 				</h1><br>
-				<p class="text-justify">{{ article.content }}</p>
+				<p class="text-justify">{{ article.content|raw }}</p>
 				<div class="flex mt-6 justify-between">
 					{% if article.isStatus %}
 						<h3>Publié</h3>

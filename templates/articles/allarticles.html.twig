@@ -16,9 +16,15 @@
 						<!-- Article -->
 						<article class="overflow-hidden rounded-lg shadow-lg">
 
-							<a href="{{path('app_articles_show', {'id': article.id} )}}">
-								<img alt="Placeholder" class="block h-auto w-full" src="https://picsum.photos/600/400/?random">
-							</a>
+							{% if article.pathImg %}
+								<a href="{{path('app_articles_show', {'id': article.id} )}}">
+									<img alt="Placeholder" class="block h-auto w-full" src="{{ vich_uploader_asset(article, 'imageFile') }}">
+								</a>
+							{% else %}
+								<a href="{{path('app_articles_show', {'id': article.id} )}}">
+									<img alt="Placeholder" class="block h-auto w-full" src="https://picsum.photos/600/400/?random">
+								</a>
+							{% endif %}
 
 							<header class="flex items-center justify-between leading-tight p-2 md:p-4">
 								<h1 class="text-lg">

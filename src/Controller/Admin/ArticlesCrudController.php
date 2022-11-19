@@ -12,11 +12,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ArticlesCrudController extends AbstractCrudController
 {
-    public const ARTICLES_BASE_PATH = 'upload/images/articles';
-    public const ARTICLES_UPLOAD_DIR = 'public/upload/images/articles';
+    public const ARTICLES_BASE_PATH = '/upload/images/articles';
     public static function getEntityFqcn(): string
     {
         return Articles::class;
@@ -30,9 +30,12 @@ class ArticlesCrudController extends AbstractCrudController
             TextField::new('description'),
             TextEditorField::new('content'),
             AssociationField::new('user'),
+            TextField::new('imageFile')
+                ->setFormType(VichImageType::class)
+                ->onlyWhenCreating(),
             ImageField::new('pathImg')
                 ->setBasePath(self::ARTICLES_BASE_PATH)
-                ->setUploadDir(self::ARTICLES_UPLOAD_DIR),
+                ->onlyOnIndex(),
             BooleanField::new('isStatus'),
             DateTimeField::new('createdAt')->hideOnForm()
         ];
