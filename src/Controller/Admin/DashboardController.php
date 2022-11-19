@@ -61,7 +61,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('Utilisateurs', 'fa-solid fa-users')->setSubItems([
             MenuItem::linkToCrud('Liste des utilisateurs', 'fas fa-eye', User::class)
         ]);
-        yield MenuItem::linkToUrl('Revenir sur le site', 'fa-solid fa-square-caret-left', '/');
+        yield MenuItem::linkToUrl('Revenir sur le site', 'fa-solid fa-square-caret-left', $this->generateUrl('app_home'));
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }
