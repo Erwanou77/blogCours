@@ -28,7 +28,7 @@
 						<a href="{{ path('app_articles_index') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Articles</a>
 						{% if app.user != false %}
 							{% if is_granted('ROLE_ADMIN') %}
-								<a href="{{ path('app_home') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Admin</a>
+								<a href="{{ path('admin') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Admin</a>
 							{% endif %}
 						{% endif %}
 
@@ -48,12 +48,12 @@
 				{% endif %}
 
 				<!--<div class="relative ml-3">
-																																																																																																													                    <div>
-																																																																																																													                        <a href="#" class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-																																																																																																													                            <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-																																																																																																													                        </a>
-																																																																																																													                    </div>
-																																																																																																													                </div> -->
+																																																																																																																	                    <div>
+																																																																																																																	                        <a href="#" class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+																																																																																																																	                            <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+																																																																																																																	                        </a>
+																																																																																																																	                    </div>
+																																																																																																																	                </div> -->
 			</div>
 		</div>
 	</div>
